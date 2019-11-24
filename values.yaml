@@ -1,8 +1,9 @@
 image: 3loc/mlflow:1.4.0
 #
-# Example using minio as a backing store for
-# both artifacts and runs.
 #
+# Example using minio as a backing store for both artifacts and runs.
+#
+# replicas: 2
 # containerPort: 80
 # env:
 # - name: MLFLOW_S3_ENDPOINT_URL

@@ -5,7 +5,7 @@ metadata:
   labels:
     app: mlflow-server
 spec:
-  replicas: 1
+  replicas: {{ default 1 .Values.replicas }}
   selector:
     matchLabels:
       app: mlflow-server
@@ -17,6 +17,7 @@ spec:
       containers:
       - name: {{ .Release.Name }}-mlflow-server
         image: {{ .Values.image }}
+        imagePullPolicy: Always
 {{- if .Values.volumeMounts }}
         volumeMounts:
 {{ toYaml .Values.volumeMounts | indent 8 }}
