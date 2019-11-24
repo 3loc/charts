@@ -1,0 +1,23 @@
+image: 3loc/mlflow:1.4.0
+#
+# Example using minio as a backing store for
+# both artifacts and runs.
+#
+# containerPort: 80
+# env:
+# - name: MLFLOW_S3_ENDPOINT_URL
+#   value: http://minio.default.svc.cluster.local
+# - name: AWS_ACCESS_KEY_ID
+#   value: secret
+# - name: AWS_SECRET_ACCESS_KEY
+#   value: secret
+# command: '["mlflow"]'
+# args: '["server", "--host", "0.0.0.0", "-p", "80", "--backend-store-uri", "sqlite:///export/datalake/mlflow/mlruns.db", "--default-artifact-root", "s3://datalake/mlflow/artifacts"]'
+# # Using minio
+# volumeMounts:
+#   - mountPath: "/export"
+#     name: minio
+# volumes:
+#   - name: minio
+#     persistentVolumeClaim:
+#       claimName: minio
