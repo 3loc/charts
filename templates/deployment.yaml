@@ -38,16 +38,3 @@ spec:
       volumes:
 {{ toYaml .Values.volumes | indent 6 }}
 {{- end }}
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: {{ .Release.Name }}-mlflow-server
-  labels:
-    app: mlflow-server
-spec:
-  ports:
-  - port: {{ default 80 $.Values.containerPort }}
-    protocol: TCP
-  selector:
-    app: mlflow-server
