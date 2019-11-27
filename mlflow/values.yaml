@@ -6,6 +6,8 @@ image: 3loc/mlflow:1.4.0
 # replicas: 2
 # containerPort: 80
 # env:
+# - name: WAIT_FOR_DATA_FOLDER
+#   value: /export/datalake/mlflow
 # - name: MLFLOW_S3_ENDPOINT_URL
 #   value: http://minio.default.svc.cluster.local
 # - name: AWS_ACCESS_KEY_ID
