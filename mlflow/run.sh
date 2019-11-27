@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -e
+set -ex
 
 if [[ "${WAIT_FOR_DATA_FOLDER}" ]]; then
 	echo "Waiting for ${WAIT_FOR_DATA_FOLDER} to be created..."
@@ -9,4 +9,4 @@ if [[ "${WAIT_FOR_DATA_FOLDER}" ]]; then
 	done
 fi
 
-mlflow "$@"
+mlflow $@
