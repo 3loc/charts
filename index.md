@@ -5,6 +5,7 @@
 
 ```
 helm repo add 3loc https://3loc.github.io/charts
+helm repo update
 helm search repo 3loc
 ```
 
