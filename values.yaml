@@ -1,0 +1,64 @@
+replicaCount: 1
+
+image:
+  repository: selltom/mlflow
+  tag: 1.5.0
+  pullPolicy: IfNotPresent
+
+backend_store_uri: "postgresql://admin:password@postgresql.default.svc.cluster.local:5432"
+default_artifact_root: "s3://datalake/mlflow/artifacts"
+
+minio:
+  url: minio.default.svc.cluster.local:9000
+  accesskey: secret
+  secretkey: secret
+
+nameOverride: ""
+fullnameOverride: ""
+
+service:
+  type: NodePort
+  port: 80
+  annotations: {}
+  ## Set the LoadBalancer service type to internal only.
+  ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer
+  ##
+  # loadBalancerIP:
+
+  ## Load Balancer sources
+  ## https://kubernetes.io/docs/tasks/access-application-cluster/configure-cloud-provider-firewall/#restrict-access-for-loadbalancer-service
+  ##
+  # loadBalancerSourceRanges:
+  # - 10.10.10.0/24
+
+## Configure Ingress based on the documentation here: https://kubernetes.io/docs/concepts/services-networking/ingress/
+##
+ingress:
+  enabled: false
+  annotations: {}
+  tls: []
+  hosts: []
+  path: /
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+# volumes:
+#   - name: minio
+#     persistentVolumeClaim:
+#       claimName: minio
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
