@@ -1,0 +1,69 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "mlflow.fullname" . }}
+  labels:
+    app.kubernetes.io/name: {{ include "mlflow.name" . }}
+    helm.sh/chart: {{ include "mlflow.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "mlflow.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ include "mlflow.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+          env:
+          - name: BACKEND_STORE_URI
+            value: {{ .Values.backend_store_uri }}
+          - name: DEFAULT_ARTIFACT_ROOT
+            value: {{ .Values.default_artifact_root }}
+          - name: MLFLOW_S3_ENDPOINT_URL
+            value: {{ .Values.minio.url }}
+          - name: AWS_ACCESS_KEY_ID
+            value: {{ .Values.minio.accesskey }}
+          - name: AWS_SECRET_ACCESS_KEY
+            value: {{ .Values.minio.secretkey }}
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          # volumeMounts:
+          #   - mountPath: "/export"
+          #     name: minio
+{{- if .Values.volumes }}
+{{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      volumes:
+{{ toYaml .Values.volumes | indent 6 }}
+{{- end }}
