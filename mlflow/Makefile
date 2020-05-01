@@ -1,6 +1,6 @@
 NAMESPACE := 3loc
 IMAGE_NAME := mlflow
-VERSION := 1.4.0
+VERSION := 1.8.0
 
 .PHONY : build rebuild push run dry install uninstall
 
