@@ -1,8 +1,8 @@
 replicaCount: 1
 
 image:
-  repository: selltom/mlflow
-  tag: 1.5.0
+  repository: ayadi05/mlflow
+  tag: latest
   pullPolicy: IfNotPresent
 
 default_artifact_root: "s3://datalake/mlflow/artifacts"
@@ -12,7 +12,7 @@ db:
   port: 5432
   user: admin
   password: password1
-  database: mlflow
+  database: postgres
 
 minio:
   url: minio.default.svc.cluster.local:9000
