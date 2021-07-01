@@ -4,3 +4,20 @@ description: A Helm chart for MLFlow
 type: application
 version: 1.5.0
 appVersion: 1.5.0
+keywords:
+  - mlflow
+home: https://mlflow.org/
+source:
+  - https://github.com/cetic/helm-mlflow
+maintainers:
+  - name: AyadiAmen
+    email: amen.ayadi@cetic.be
+    url: https://github.com/AyadiAmen
+  - name: fzalila
+    email: faiez.zalila@cetic.be
+    url: https://github.com/fzalila
+dependencies:
+  - name: postgresql
+    version: ~10.3.6
+    repository: https://charts.bitnami.com/bitnami
+    condition: db.default.enabled

@@ -7,11 +7,15 @@ image:
 
 default_artifact_root: "s3://datalake/mlflow/artifacts"
 
+
+
 db:
-  host: fadi-postgresql
+  default:
+    enabled: false
+  host: postgresql
   port: 5432
   user: admin
-  password: password1
+  password: password
   database: postgres
 
 minio:
