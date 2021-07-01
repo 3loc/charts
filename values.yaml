@@ -1,12 +1,22 @@
 replicaCount: 1
 
 image:
-  repository: selltom/mlflow
+  repository: ayadi05/mlflow
   tag: 1.5.0
   pullPolicy: IfNotPresent
 
-backend_store_uri: "postgresql://admin:password@postgresql.default.svc.cluster.local:5432"
 default_artifact_root: "s3://datalake/mlflow/artifacts"
+
+
+
+db:
+  default:
+    enabled: false
+  host: postgresql
+  port: 5432
+  user: admin
+  password: password
+  database: postgres
 
 minio:
   url: minio.default.svc.cluster.local:9000
@@ -37,7 +47,7 @@ ingress:
   enabled: false
   annotations: {}
   tls: []
-  hosts: []
+  hosts: [mlflow.test]
   path: /
 
 resources: {}
