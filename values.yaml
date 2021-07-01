@@ -2,7 +2,7 @@ replicaCount: 1
 
 image:
   repository: ayadi05/mlflow
-  tag: latest
+  tag: 1.5.0
   pullPolicy: IfNotPresent
 
 default_artifact_root: "s3://datalake/mlflow/artifacts"
