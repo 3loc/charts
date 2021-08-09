@@ -52,42 +52,41 @@ helm delete --purge my-release
 
 The following table lists the configurable parameters of the mlflow chart and the default values.
 
-| Parameter                                                                   | Description                                                                                                        | Default                         |
-| --------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------| ------------------------------- |
-| **Image**                                                                   |
-| `image.repository`                                                          | MLFlow Image name                                                                                              | `ayadi05/mlflow`         |
-| `image.tag`                                                                 | MLFlow Image tag                                                                                               | `1.5.0`                      |
-| `image.pullPolicy`                                                          | MLFlow Image pull policy                                                                                       | `IfNotPresent`                  |
-| **Outpout configuration**                                                              |
-| `backend_store_uri`                                                       | Database which store the metrics file                                                                       | `postgresql://user:password@postgresql.default.svc.cluster.local:5432`                            |
-| `default_artifact_root`                                                        | Bucket and path used to save the artifacts                                                                  | `s3://datalake/mlflow/artifacts` |
-| **Database configuration**                                                             |
-| `db.default.enabled`                                                      | Default database (in container) enabled                                                                          | false                           |
-| `db.host`                                                                 | Database host                                                                                                    | postgresql                      |
-| `db.port`                                                                 | Database port                                                                                                    | 5432                            |
-| `db.user`                                                                 | Database user                                                                                                    | admin                           |
-| `db.password`                                                             | Database password                                                                                                | password                        |
-| `db.database`                                                             | Database name                                                                                                    | postgres                        |
-
-|**Minio Configuration**                                                                 |
-| `minio.url`                                                              | mlflow S3 endpoint url frontend                                                                            | `minio.default.svc.cluster.local:9000`                      |
-| `minio.accesskey`                                                              | minio access key                                                                                          | `secret`                          |
-| `minio.secretkey`                                                          | minio secret key                                                                               | `secret`                         |
- |**Service**                                                                 |
-| `service.type`                                                              | Type of service for MLFlow frontend                                                                            | `NodePort`                      |
-| `service.port`                                                              | Port to expose service                                                                                             | `80`                          |
-| `service.nodePort`                                                          | Port where the service is reachable                                                                                | `30245`                         |
-| `service.loadBalancerIP`                                                    | LoadBalancerIP if service type is `LoadBalancer`                                                                   | `nil`                           |
-| `service.loadBalancerSourceRanges`                                          | Address that are allowed when svc is `LoadBalancer`                                                                | `[]`                            |
-| `service.annotations`                                                       | Service annotations                                                                                                | `{}`                            |
-| **Ingress**                                                                 |
-| `ingress.enabled`                                                           | Enables Ingress                                                                                                    | `false`                         |
-| `ingress.annotations`                                                       | Ingress annotations                                                                                                | `{}`                            |
-| `ingress.path`                                                              | Path to access frontend                                                                                            | `/`                             |
-| `ingress.hosts`                                                             | Ingress hosts                                                                                                      | `[]`                            |
-| `ingress.tls`                                                               | Ingress TLS configuration                                                                                          | `[]`                            |
-| **Resources**                                                               |
-| `resources`                                                                 | CPU/Memory resource requests/limits                                                                                | `{}`                            |
+| Parameter                          | Description                                         | Default                                                                |
+| ---------------------------------- | --------------------------------------------------- | ---------------------------------------------------------------------- |
+| **Image**                          |
+| `image.repository`                 | MLFlow Image name                                   | `ayadi05/mlflow`                                                       |
+| `image.tag`                        | MLFlow Image tag                                    | `1.5.0`                                                                |
+| `image.pullPolicy`                 | MLFlow Image pull policy                            | `IfNotPresent`                                                         |
+| **Outpout configuration**          |
+| `backend_store_uri`                | Database which store the metrics file               | `postgresql://user:password@postgresql.default.svc.cluster.local:5432` |
+| `default_artifact_root`            | Bucket and path used to save the artifacts          | `s3://datalake/mlflow/artifacts`                                       |
+| **Database configuration**         |
+| `db.default.enabled`               | Default database (in container) enabled             | false                                                                  |
+| `db.host`                          | Database host                                       | postgresql                                                             |
+| `db.port`                          | Database port                                       | 5432                                                                   |
+| `db.user`                          | Database user                                       | admin                                                                  |
+| `db.password`                      | Database password                                   | password                                                               |
+| `db.database`                      | Database name                                       | postgres                                                               |
+| **Minio Configuration**            |
+| `minio.url`                        | mlflow S3 endpoint url frontend                     | `minio.default.svc.cluster.local:9000`                                 |
+| `minio.accesskey`                  | minio access key                                    | `secret`                                                               |
+| `minio.secretkey`                  | minio secret key                                    | `secret`                                                               |
+| **Service**                        |
+| `service.type`                     | Type of service for MLFlow frontend                 | `NodePort`                                                             |
+| `service.port`                     | Port to expose service                              | `80`                                                                   |
+| `service.nodePort`                 | Port where the service is reachable                 | `30245`                                                                |
+| `service.loadBalancerIP`           | LoadBalancerIP if service type is `LoadBalancer`    | `nil`                                                                  |
+| `service.loadBalancerSourceRanges` | Address that are allowed when svc is `LoadBalancer` | `[]`                                                                   |
+| `service.annotations`              | Service annotations                                 | `{}`                                                                   |
+| **Ingress**                        |
+| `ingress.enabled`                  | Enables Ingress                                     | `false`                                                                |
+| `ingress.annotations`              | Ingress annotations                                 | `{}`                                                                   |
+| `ingress.path`                     | Path to access frontend                             | `/`                                                                    |
+| `ingress.hosts`                    | Ingress hosts                                       | `[]`                                                                   |
+| `ingress.tls`                      | Ingress TLS configuration                           | `[]`                                                                   |
+| **Resources**                      |
+| `resources`                        | CPU/Memory resource requests/limits                 | `{}`                                                                   |
 
 ## Contributing
 
