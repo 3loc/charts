@@ -12,6 +12,8 @@ default_artifact_root: "s3://datalake/mlflow/artifacts"
 db:
   default:
     enabled: false
+  ## type can be 'postgresql', 'mysql' or any other db type that can be used in a db_uri
+  type: postgresql
   host: postgresql
   port: 5432
   user: admin
